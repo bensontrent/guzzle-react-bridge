@@ -3,6 +3,7 @@
 namespace Productsup\GuzzleReactBridge;
 
 use GuzzleHttp\Handler\CurlMultiHandler as BaseCurlMultiHandler;
+use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\RequestInterface;
 use React\EventLoop\LoopInterface;
 use React\EventLoop\TimerInterface;
@@ -27,7 +28,7 @@ class CurlMultiHandler extends BaseCurlMultiHandler
         $this->loop = $loop;
     }
 
-    public function __invoke(RequestInterface $request, array $options)
+    public function __invoke(RequestInterface $request, array $options): PromiseInterface
     {
         $this->activeRequests++;
 
